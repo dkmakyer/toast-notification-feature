@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast Notification</title>
+</head>
+<style>
+    body{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+    .container{
+        padding: 40px;
+        background-color: rgb(226, 219, 219);
+        width: 94.1vw;
+        height: 87.5vh;
+        position: relative;
+    }
+    .buttons{
+        margin: 3rem;
+    }
+    button{
+        margin-right: 3rem;
+        width: 6rem;
+        height: 2rem;
+        cursor: pointer;
+        background-color: rgb(26, 25, 25);
+        color: rgb(226, 219, 219);
+    }
+
+    .notifications{
+        position: absolute;
+        right: 0;
+        margin:8rem 3rem 0 0;
+    }
+    .notif-1, .notif-2, .notif-3{
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .notif-1 img, .notif-2 img, .notif-3 img{
+        width: 40px;
+        height: 40px;
+    }
+    .notif-1::after{
+        position: absolute;
+        content: "";
+        background-color: rgb(131, 214, 76);
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        border-radius: 5px;
+        width: 100%;
+        animation: loading 1s linear infinite 
+    }
+    .notif-2::after{
+        position: absolute;
+        content: "";
+        background-color: rgb(199, 47, 54);
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        border-radius: 5px;
+        width: 100%;
+        animation: loading 2s linear infinite 
+    }
+    .notif-3::after{
+        position: absolute;
+        content: "";
+        background-color: rgb(255, 222, 77);
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        border-radius: 5px;
+        width: 100%;
+        animation: loading 3s linear infinite 
+    }
+    @keyframes loading {
+        0% {
+            width: 0%;    
+        }
+        25%{
+            width: 25%;
+        }
+        50%{
+            width: 50%;
+        }
+        75%{
+            width: 75%;    
+        }
+        100%{
+            width: 100%;
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="buttons">
+            <button>Success</button>
+            <button>Error</button>
+            <button>Invalid</button>
+        </div>
+        <div class="notifications">
+            <div class="notif-1">
+                <img src="check.png" alt="image not found">
+                <p>Successfully submitted</p>
+            </div>
+            <div class="notif-2">
+                <img src="close.png" alt="image not found">
+                <p>Please fix the error!</p>
+            </div>
+            <div class="notif-3">
+                <img src="warning.png" alt="image not found">
+                <p>Invalid input, check again</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
