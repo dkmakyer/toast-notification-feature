@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toast Notification</title>
 </head>
 <style>
-    body{
+    body {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
     }
-    .container{
+
+    .container {
         padding: 40px;
         background-color: rgb(226, 219, 219);
         width: 94.1vw;
         height: 87.5vh;
         position: relative;
     }
-    .buttons{
+
+    .buttons {
         margin: 3rem;
     }
-    button{
+
+    button {
         margin-right: 3rem;
         width: 6rem;
         height: 2rem;
@@ -30,12 +34,15 @@
         color: rgb(226, 219, 219);
     }
 
-    .notifications{
+    .notifications {
         position: absolute;
         right: 0;
-        margin:8rem 3rem 0 0;
+        margin: 8rem 3rem 0 0;
     }
-    .notif-1, .notif-2, .notif-3{
+
+    .notif-1,
+    .notif-2,
+    .notif-3 {
         display: flex;
         position: relative;
         justify-content: space-between;
@@ -43,11 +50,15 @@
         padding-bottom: 10px;
         font-family: Arial, Helvetica, sans-serif;
     }
-    .notif-1 img, .notif-2 img, .notif-3 img{
+
+    .notif-1 img,
+    .notif-2 img,
+    .notif-3 img {
         width: 40px;
         height: 40px;
     }
-    .notif-1::after{
+
+    .notif-1::after {
         position: absolute;
         content: "";
         background-color: rgb(131, 214, 76);
@@ -56,9 +67,10 @@
         height: 5px;
         border-radius: 5px;
         width: 100%;
-        animation: loading 1s linear infinite 
+        animation: loading 1s linear infinite
     }
-    .notif-2::after{
+
+    .notif-2::after {
         position: absolute;
         content: "";
         background-color: rgb(199, 47, 54);
@@ -67,9 +79,10 @@
         height: 5px;
         border-radius: 5px;
         width: 100%;
-        animation: loading 2s linear infinite 
+        animation: loading 2s linear infinite
     }
-    .notif-3::after{
+
+    .notif-3::after {
         position: absolute;
         content: "";
         background-color: rgb(255, 222, 77);
@@ -78,35 +91,41 @@
         height: 5px;
         border-radius: 5px;
         width: 100%;
-        animation: loading 3s linear infinite 
+        animation: loading 3s linear infinite
     }
+
     @keyframes loading {
         0% {
-            width: 0%;    
+            width: 0%;
         }
-        25%{
+
+        25% {
             width: 25%;
         }
-        50%{
+
+        50% {
             width: 50%;
         }
-        75%{
-            width: 75%;    
+
+        75% {
+            width: 75%;
         }
-        100%{
+
+        100% {
             width: 100%;
         }
     }
 </style>
+
 <body>
     <div class="container">
         <div class="buttons">
-            <button>Success</button>
-            <button>Error</button>
-            <button>Invalid</button>
+            <button id="button1" data-type="notif-1">Success</button>
+            <button id="button2" data-type="notif-2">Error</button>
+            <button id="button3" data-type="notif-3">Invalid</button>
         </div>
-        <div class="notifications">
-            <div class="notif-1">
+        <div class="notifications" id="notifications">
+            <!-- <div class="notif-1">
                 <img src="check.png" alt="image not found">
                 <p>Successfully submitted</p>
             </div>
@@ -117,8 +136,55 @@
             <div class="notif-3">
                 <img src="warning.png" alt="image not found">
                 <p>Invalid input, check again</p>
-            </div>
+            </div> -->
         </div>
     </div>
+    <script>
+        let notifications = document.getElementById("notifications")
+
+        document.querySelectorAll("button").forEach(button => {
+            button.addEventListener("click", function () {
+                let div = document.createElement("div");
+                let img = document.createElement("img");
+                let p = document.createElement("p");
+                console.log(this.getAttribute("data-type"));
+                switch (this.getAttribute("data-type")) {
+                    case "notif-1":
+                        div.classList.add("notif-1");
+                        img.src = "check.png";
+                        p.innerHTML = "Successfully submitted";
+                        setTimeout(()=>{
+                            notifications.removeChild(div);
+                        }, 3000);
+                        break;
+                    case "notif-2":
+                        div.classList.add("notif-2");
+                        img.src = "close.png";
+                        p.innerHTML = "Please fix the error!";
+                        setTimeout(()=>{
+                            notifications.removeChild(div);
+                        }, 3000);
+                        break;
+                    case "notif-3":
+                        div.classList.add("notif-3");
+                        img.src = "warning.png";
+                        p.innerHTML = "Invalid input, check again.";
+
+                        setTimeout(()=>{
+                            notifications.removeChild(div);
+                        }, 3000);
+
+                        break;
+
+                }
+
+                div.appendChild(img);
+                div.appendChild(p);
+                notifications.appendChild(div);
+
+            })
+        })
+    </script>
 </body>
+
 </html>
